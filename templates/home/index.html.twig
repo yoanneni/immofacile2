@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImmoFacile{% endblock %}
+
+{% block body %}
+    <h1>ImmoFacile</h1>
+
+    <a href="{{ path('home') }}?sort=rental&direction=asc">Loyers du - vers +</a>
+    <a href="{{ path('home') }}?sort=rental&direction=desc">Loyers du + vers -</a>
+
+    {% autoescape 'html' %}
+        {{ script|raw }}
+    {% endautoescape %}
+
+    <table>
+        <tr>
+            <th>Adresse</th>
+            <th>Code postal</th>
+            <th>Ville</th>
+            <th>Loyer</th>
+            <th>Catégorie</th>
+        </tr>
+        {% for house in houses %}
+            <tr>
+                <td>{{ house.address }}</td>
+                <td>{{ house.postalCode }}</td>
+                <td>{{ house.city }}</td>
+                <td>{{ house.rental }}€</td>
+                <td>
+                    {{ house.category.title|default('Pas définie !') }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('new_house') }}" class="btn">Nouvelle maison</a>
+
+{% endblock %}
