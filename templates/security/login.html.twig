@@ -20,6 +20,9 @@
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
+    <a href="{{ path('home') }}?sort=ASC"> > </a>
+    <a href="{{ path('home') }}?sort=DESC"> < </a>
+
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >

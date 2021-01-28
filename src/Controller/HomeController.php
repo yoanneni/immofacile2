@@ -21,6 +21,9 @@ class HomeController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request
     ): Response {
+
+
+        // localhost:8000
         $sort = $request->query->get('sort', 'rental');
         $direction = $request->query->get('direction', 'ASC');
 

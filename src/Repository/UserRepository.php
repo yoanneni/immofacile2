@@ -22,6 +22,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         parent::__construct($registry, User::class);
     }
 
+    public function findOneByUsernameOrEmail(string $username)
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.username = :username OR u.email = :username')
+            ->setParameter('username', $username)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
